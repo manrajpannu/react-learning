@@ -28,9 +28,7 @@ export default function TodoList() {
 	}, []);
 
 	function deleteTodo(id) {
-		console.log(Todos);
-		Todos[id - 1] = {};
-		setTodos(Todos);
+		setTodos((prev) => prev.filter((todo) => todo.id !== id));
 	}
 	return (
 		<div style={{ display: 'inline-block', textAlign: 'center' }}>
