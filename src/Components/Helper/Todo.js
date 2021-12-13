@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function Todo({ id, description, completed, deleteTodo }) {
-	const isDone = { textDecoreaction: 'line-through' };
+export default function Todo({
+	id,
+	description,
+	completed,
+	deleteTodo,
+	markTodo,
+}) {
+	const [done, setDone] = useState();
+
+	function markIt() {
+		if (!done) {
+			setDone({ textDecoration: 'line-through' });
+		} else {
+			setDone();
+		}
+	}
+
 	return (
 		<div>
 			<h3>
-				<span style={completed ? isDone : {}}>{description}</span>
+				<span style={done}>{description}</span>
 				<button
 					onClick={() => {
 						deleteTodo(id);
@@ -14,7 +29,14 @@ export default function Todo({ id, description, completed, deleteTodo }) {
 				>
 					X
 				</button>
-				<button style={{ marginLeft: '10px', float: 'right' }}>Done</button>
+				<button
+					style={{ marginLeft: '10px', float: 'right' }}
+					onClick={() => {
+						markIt();
+					}}
+				>
+					Done
+				</button>
 			</h3>
 		</div>
 	);

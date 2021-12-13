@@ -30,6 +30,13 @@ export default function TodoList() {
 	function deleteTodo(id) {
 		setTodos((prev) => prev.filter((todo) => todo.id !== id));
 	}
+
+	function markTodo(id) {
+		//setTodos((prev) => prev.filter((todo) => todo.id !== id));
+		console.log(setTodos((prev) => prev.filter((todo) => todo.id === id)));
+	}
+
+	console.log(Todos);
 	return (
 		<div style={{ display: 'inline-block', textAlign: 'center' }}>
 			<h1>Todos</h1>
@@ -49,6 +56,7 @@ export default function TodoList() {
 							description={todo.task}
 							completed={todo.completed}
 							deleteTodo={deleteTodo}
+							markTodo={markTodo}
 						/>
 					);
 				}
